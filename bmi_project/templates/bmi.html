@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Berekening</title>
+    <style>
+        body { font-family: Arial; max-width: 500px; margin: 50px auto; }
+        input { padding: 8px; margin: 5px 0; width: 100%; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .resultaat { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <label>Gewicht (kg):</label>
+        <input type="number" name="gewicht" step="0.1" required>
+        
+        <label>Lengte (meter):</label>
+        <input type="number" name="lengte" step="0.01" required>
+        
+        <button type="submit">Bereken BMI</button>
+    </form>
+
+    {% if resultaat %}
+    <div class="resultaat">
+        <h2>Resultaat:</h2>
+        <p><strong>BMI:</strong> {{ resultaat }}</p>
+        <p><strong>Categorie:</strong> {{ categorie }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
